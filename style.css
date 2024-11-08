@@ -1,0 +1,277 @@
+/* General Styles */
+body {
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+    background-color: #FFEBEE; /* Light pink background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    background-color: #FFAB40; /* Header background */
+    width: 100%;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between; /* Space between button and marquee */
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timetable-button {
+    background-color: #AB47BC;
+    padding: 12px 20px;
+    font-size: 18px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.motivational-marquee {
+    font-size: 18px;
+    color: #FFF;
+    padding: 10px;
+    background-color: #F06292; /* Marquee background */
+}
+
+/* Container and Avatar */
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #FFF59D;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    transition: transform 0.2s ease-in-out;
+    margin-top: 30px; /* Add this line to move the container down */
+}
+
+.avatar img {
+    width: 150px;
+    border-radius: 50%;
+    border: 5px solid #FF7043;
+    margin-bottom: 15px;
+    margin-top: 10px; /* Add this line if you want more space above the avatar */
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+
+
+/* Chat Box */
+.chat-box {
+    margin-top: 15px;
+}
+
+.chat-log {
+    height: 150px;
+    overflow-y: auto;
+    background-color: #FFF;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 3px solid #64B5F6;
+    font-size: 16px;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border-radius: 10px;
+    border: 3px solid #64B5F6;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Button Styling */
+button {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    color: #FFF;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button#startSpeech {
+    background-color: #FF7043;
+}
+
+button#stopSpeech {
+    background-color: #F44336;
+}
+
+button[onclick="sendMessage()"] {
+    background-color: #64B5F6;
+}
+
+/* Popup Styles */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+.popup-content {
+    position: relative;
+    width: 80%;
+    max-width: 300px;
+    margin: 15% auto;
+    padding: 25px;
+    background-color: #FFF59D;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: popupAnimation 0.3s ease;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #F44336;
+}
+
+.popup p {
+    font-size: 20px;
+    color: #333;
+}
+
+/* Dim screen effect */
+.dim-screen {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: background-color 0.5s ease;
+}
+
+/* Screen Lock Modal */
+.screen-lock {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+}
+
+.lock-content {
+    text-align: center;
+    background-color: #4CAF50;
+    padding: 25px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: popupAnimation 0.3s ease;
+}
+
+.lock-content p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.lock-content input[type="password"] {
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 80%;
+    max-width: 220px;
+    text-align: center;
+}
+
+.lock-content button {
+    padding: 12px 25px;
+    background-color: #FF7043;
+    border: none;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.hint {
+    color: #FFE082;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Break Reminder Modal */
+.break-reminder {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    font-family: 'Comic Sans MS', Arial, sans-serif;
+}
+
+.break-content {
+    text-align: center;
+    background-color: #4CAF50;
+    padding: 25px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    animation: popupAnimation 0.3s ease;
+}
+
+.break-content p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.break-content button {
+    padding: 12px 25px;
+    background-color: #FF7043;
+    border: none;
+    border-radius: 10px;
+    color: #FFF;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Animation for popup */
+@keyframes popupAnimation {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

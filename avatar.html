@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Character Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header with Timetable Button and Marquee -->
+    <header class="header">
+        <button onclick="window.location.href='timetable.html'" class="timetable-button">View Timetable 📅</button>
+        <marquee behavior="scroll" direction="left" class="motivational-marquee">
+            Stay positive! Keep learning! Believe in yourself! Enjoy your playtime! 🌟
+        </marquee>
+    </header>
+
+    <div class="container">
+        <!-- Character Avatar -->
+        <div class="avatar">
+            <img src="dora.png" alt="Character Avatar" id="characterAvatar">
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="chat-box">
+            <div id="chatLog" class="chat-log"></div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button id="startSpeech">🎙️ Speak</button>
+            <button id="stopSpeech">✋ Stop</button>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Screen Lock Modal -->
+    <div id="screenLock" class="screen-lock">
+        <div class="lock-content">
+            <p>Screen time is up! 🌞<br>To continue, please enter the password.</p>
+            <input type="password" id="unlockPassword" placeholder="Enter password...">
+            <p class="hint">Hint: pass:12345 (for demonstration)</p>
+            <button onclick="unlockScreen()">Unlock</button>
+        </div>
+    </div>
+
+
+
+    <!-- Screen Dim Reminder Modal -->
+    <div id="breakReminder" class="break-reminder">
+        <div class="break-content">
+            <p>You've had enough screen time! 🌞<br>Time to go outside and play, have fun!</p>
+            <button onclick="closeBreakReminder()">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // List of motivational quotes
+        const motivationalQuotes = [
+            "Believe in yourself! You can achieve anything!",
+            "Remember to take breaks and enjoy playtime!",
+            "Keep up the great work! You're doing amazing!",
+            "Stay focused and keep learning!",
+            "Time to play outside! Refresh your mind!",
+            "Stay curious and keep asking questions!"
+        ];
+
+        // Function to show popup with a random motivational quote
+        function showPopup() {
+            const message = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            document.getElementById('motivationalMessage').innerText = message;
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        // Close popup
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Set popup to appear every hour (3600000 milliseconds)
+        setInterval(showPopup, 3600000);
+
+        // Show popup initially on page load
+        window.onload = function() {
+            showPopup();
+            startScreenTimer();
+        };
+
+        // Screen Timer for Break Reminder
+        function startScreenTimer() {
+            // Show the break reminder after 1 minute (60000 milliseconds)
+            setTimeout(showBreakReminder, 60000); // Change duration as needed
+        }
+
+        // Function to show the break reminder modal
+        function showBreakReminder() {
+            document.getElementById('breakReminder').style.display = 'flex';
+            document.body.classList.add('dim-screen'); // Dim the screen
+        }
+
+        // Function to close the break reminder modal and reset timer
+        function closeBreakReminder() {
+            document.getElementById('breakReminder').style.display = 'none';
+            document.body.classList.remove('dim-screen'); // Remove dim
+            startScreenTimer(); // Restart the timer
+        }
+
+        // Function to unlock the screen with a password
+        function unlockScreen() {
+            const password = document.getElementById('unlockPassword').value;
+            if (password === "12345") {
+                document.getElementById('screenLock').style.display = 'none';
+                document.body.classList.remove('dim-screen'); // Remove dim effect
+                startScreenTimer(); // Restart the timer
+            } else {
+                alert("Incorrect password. Try again!");
+            }
+        }
+    </script>
+</body>
+</html>
